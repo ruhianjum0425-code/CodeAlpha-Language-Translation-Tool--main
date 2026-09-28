@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lexicon — Text Translator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="masthead">
+    <div class="masthead-inner">
+      <h1>Lexicon</h1>
+      <p class="tagline">A plain, fast way to move text between languages.</p>
+    </div>
+  </header>
+
+  <main class="workspace">
+
+    <div class="pane-row">
+
+      <!-- SOURCE PANE -->
+      <section class="pane" aria-label="Source text">
+        <div class="pane-head">
+          <label for="source-lang" class="pane-label">From</label>
+          <select id="source-lang" class="lang-select">
+            <option value="auto">Detect language</option>
+          </select>
+          <span class="char-count" id="source-count">0 / 2000</span>
+        </div>
+        <textarea id="source-text" class="pane-text" maxlength="2000"
+          placeholder="Type or paste text here…"></textarea>
+        <div class="pane-foot">
+          <button id="clear-btn" class="ghost-btn" type="button">Clear</button>
+          <button id="listen-source-btn" class="ghost-btn" type="button" title="Listen to source text">
+            <svg viewBox="0 0 24 24" class="icon" aria-hidden="true"><path d="M4 9v6h4l5 5V4L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+            Listen
+          </button>
+        </div>
+      </section>
+
+      <!-- SWAP -->
+      <div class="swap-wrap">
+        <button id="swap-btn" class="swap-btn" type="button" title="Swap languages" aria-label="Swap languages">
+          <svg viewBox="0 0 24 24" class="icon" aria-hidden="true">
+            <path d="M7 7h11l-3-3M17 17H6l3 3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- TARGET PANE -->
+      <section class="pane" aria-label="Translated text">
+        <div class="pane-head">
+          <label for="target-lang" class="pane-label">To</label>
+          <select id="target-lang" class="lang-select"></select>
+          <span class="status" id="status-text" aria-live="polite"></span>
+        </div>
+        <div id="target-text" class="pane-text output" tabindex="0" aria-live="polite"
+          data-placeholder="Translation will appear here…"></div>
+        <div class="pane-foot">
+          <button id="copy-btn" class="ghost-btn" type="button">
+            <svg viewBox="0 0 24 24" class="icon" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M5 15V5a1.5 1.5 0 0 1 1.5-1.5H15" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+            Copy
+          </button>
+          <button id="listen-target-btn" class="ghost-btn" type="button" title="Listen to translation">
+            <svg viewBox="0 0 24 24" class="icon" aria-hidden="true"><path d="M4 9v6h4l5 5V4L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+            Listen
+          </button>
+        </div>
+      </section>
+
+    </div>
+
+    <div class="action-row">
+      <button id="translate-btn" class="primary-btn" type="button">Translate</button>
+      <span class="hint">Tip: press <kbd>⌘/Ctrl</kbd> + <kbd>Enter</kbd> to translate</span>
+    </div>
+
+  </main>
+
+  <footer class="foot">
+    <p>Built for the AI internship translation exercise · powered by a free translation API, swappable for Google Cloud Translation or Microsoft Translator</p>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
